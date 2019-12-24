@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 預設 */
+        .container {
+            width: 1536px;
+            margin: 0px auto;
+            padding: 0;
+        }
+
+        @media (max-width: 1680px) {
+            .container {
+                width: 1336px;
+            }
+        }
+
+        @media (max-width: 1460px) {
+            .container {
+                width: 1136px;
+            }
+
+            .nav-links {
+                padding: 0px 60px 0px 120px;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            .container {
+                width: 960px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0px 30px;
+                width: 100%;
+            }
+        }
+
+        body {
+            background: rgb(0, 0, 0);
+            height: 2000px;
+            margin: 0;
+            font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        }
+
+        nav {
+            background-color: black;
+            color: white;
+            width: 100%;
+            height: 48px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 10;
+            /* background-color: transparent; */
+        }
+
+        nav .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo {
+            width: 190px;
+            height: 48px;
+            display: flex;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            nav .logo {
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 670px) {
+            nav .logo {
+                width: 30px;
+            }
+        }
+
+        nav .logo a {
+
+            width: 16px;
+
+            display: block;
+        }
+
+        nav .logo svg {
+            width: 16px;
+            height: 16px;
+
+        }
+
+        nav svg .microsoft-red {
+            fill: rgb(255, 255, 255);
+            transition: all 200ms linear 0ms;
+        }
+
+        nav svg .microsoft-green {
+            fill: rgb(255, 255, 255);
+            transition: all 200ms linear 0ms;
+        }
+
+        nav svg .microsoft-blue {
+            fill: rgb(255, 255, 255);
+            transition: all 200ms linear 0ms;
+        }
+
+        nav svg .microsoft-yellow {
+            fill: rgb(255, 255, 255);
+            transition: all 200ms linear 0ms;
+        }
+
+        nav .website_title h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 49px;
+        }
+
+        .nav-ul {
+            width: 100%;
+            display: flex;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+
+        }
+
+        .nav-li {
+            width: auto;
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+            line-height: 49px;
+            font-weight: 600;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        nav ul a {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            flex-grow: 1;
+            height: 48px;
+            flex: 1 1 auto;
+            padding: 0px 120px 0px 420px;
+        }
+
+        @media (max-width: 1460px) {
+            .nav-links {
+                padding: 0px 60px 0px 120px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                padding: 0px 0px 0px 120px;
+            }
+        }
+
+        .mobile_nav_toggle {
+            display: none;
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            height: 48px;
+            width: 48px;
+        }
+
+        .mobile_nav_toggle span {
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background-color: rgb(255, 255, 255);
+            transition: all 200ms linear 0ms;
+        }
+
+        .mobile_nav_toggle span.top-bar {
+            top: 17px;
+            left: 12px;
+            transform: rotate(0deg);
+        }
+
+        .mobile_nav_toggle span.middle-bar {
+            top: 24px;
+            left: 12px;
+            opacity: 1;
+        }
+
+        .mobile_nav_toggle span.bottom-bar {
+            top: 31px;
+            left: 12px;
+            transform: rotate(0deg);
+        }
+
+        .mobile_nav {
+            /* display: none; */
+            opacity: 0;
+            pointer-events: none;
+            position: fixed;
+            top: 48px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 48px);
+            background-color: black;
+            transition: 1s;
+        }
+
+        .mobile_nav.active {
+            /* display: block; */
+            opacity: 1;
+            pointer-events: all;
+        }
+
+
+        .mobile_nav ul {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        .mobile_nav ul a {
+            color: rgb(255, 255, 255);
+            position: relative;
+            display: block;
+            text-decoration: none;
+            padding: 25px 30px;
+        }
+
+
+        /* mobile 選單出現 */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile_nav_toggle {
+                display: block;
+            }
+        }
+
+        .main {
+            width: 100%;
+            position: relative;
+            overflow-x: hidden;
+            margin: 48px 0px 0px;
+        }
+
+        .page1_main {
+            width: 100%;
+            margin: 145px 0px 60px;
+        }
+
+        .page1_content {
+            display: flex;
+            width: 1536px;
+            margin: 0px auto;
+        }
+
+        @media (max-width: 1680px) {
+            .page1_content {
+                width: 1336px;
+            }
+        }
+
+        @media (max-width: 1460px) {
+            .page1_content {
+                width: 1136px;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            .page1_content {
+                width: 960px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .page1_content {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .page1_content {
+                width: 100%;
+                padding: 0px 30px;
+            }
+        }
+
+
+        .page1_content_L_side {
+            width: 410px;
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 1280px) {
+            .page1_content_L_side {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .page1_content_L_side {
+                width: 60%;
+            }
+        }
+
+        @media (max-width: 670px) {
+            .page1_content_L_side {
+                width: 100%;
+            }
+        }
+
+        .L_side_title {
+            width: 100%;
+        }
+
+        .title_h2 {
+            font-size: 64px;
+            line-height: 80px;
+            color: rgb(79, 229, 255);
+            font-weight: 600;
+            margin: 0px 0px 0px -6px;
+        }
+
+        .L_side_text_box {
+            width: 100%;
+            margin: 100px 0px 30px;
+        }
+
+        .L_side_text {
+            width: 100%;
+            max-width: 352px;
+        }
+
+        p {
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 600;
+            margin: 0px 0px 24px;
+        }
+
+        .page1_content_R_side {
+            text-align: center;
+            position: relative;
+            flex: 1 1 auto;
+        }
+
+        .img_line_01 {
+            position: absolute;
+            top: -15px;
+            right: 180px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1680px) {
+            .img_line_01 {
+                top: -40px;
+                right: 36px;
+            }
+        }
+
+        .img_line_02 {
+            position: absolute;
+            bottom: 155px;
+            left: 180px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1680px) {
+            .img_line_02 {
+                bottom: 160px;
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            .page1_content_R_side {
+                width: 50%;
+                padding: 0px 40px;
+            }
+        }
+
+        @media (min-width: 1300px) {
+            .container {
+                max-width: 90%;
+            }
+        }
+
+        .info {
+            /* overflow: hidden; */
+            width: 100%;
+            position: relative;
+        }
+
+        .info>.container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1536px;
+            margin: 0px auto;
+        }
+
+        .info .row {
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .info::before {
+            content: "";
+            width: 50vw;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+            background-color: rgb(34, 128, 200);
+        }
+
+        .info::after {
+            content: "";
+            width: 50vw;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            z-index: 1;
+            background-color: rgb(95, 207, 99);
+        }
+
+        .info .col-xl-3:nth-child(1) {
+            width: 25%;
+            height: 384px;
+            position: relative;
+            z-index: 2;
+            background-color: rgb(37, 142, 222);
+        }
+
+        .info .col-xl-3:nth-child(2) {
+            background-color: rgb(79, 229, 255);
+            height: 384px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info .col-xl-3:nth-child(3) {
+            background-color: rgb(207, 143, 255);
+            height: 384px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info .col-xl-3:nth-child(4) {
+            background-color: rgb(105, 229, 110);
+            height: 384px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .a_1 {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .icon {
+            min-height: 96px;
+            width: 100%;
+            text-align: left;
+            flex: 1 1 auto;
+            padding: 26px;
+        }
+
+        .row_text {
+            height: 100px;
+            width: 100%;
+            flex: 0 0 auto;
+            padding: 0px 26px;
+        }
+
+        .row_text h2 {
+            color: rgb(0, 0, 0);
+            font-size: 32px;
+            letter-spacing: -0.03rem;
+            line-height: 40px;
+            font-weight: 600;
+            margin: 0px 0px 26px;
+        }
+
+        .row_text p {
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 600;
+            margin: 0px;
+        }
+
+        .row_action {
+            height: 48px;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            flex: 0 0 auto;
+            padding: 0px 26px 10px;
+        }
+
+        /* <!-- page3_Natural on --> */
+        .Natural_on_main_box {
+            width: 100%;
+            min-height: 768px;
+            background: url(https://www.microsoft.com/design/fluent/assets/images/msft-verge-fluent.jpg) 50% center / cover no-repeat fixed rgb(204, 204, 204);
+        }
+
+        .Natural_on_top_box {
+            width: 1536px;
+            margin: 0px auto;
+        }
+
+        .Natural_on_top_title {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+        .Natural_on_top_heading {
+            color: rgb(0, 0, 0);
+            font-size: 128px;
+            line-height: 150px;
+            font-weight: 600;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="">
+                    <svg viewBox="0 0 24 24">
+                        <rect class="microsoft-red" width="11" height="11"></rect>
+                        <rect class="microsoft-green" x="13" width="11" height="11"></rect>
+                        <rect class="microsoft-blue" y="13" width="11" height="11"></rect>
+                        <rect class="microsoft-yellow" x="13" y="13" width="11" height="11"></rect>
+                    </svg>
+                </a>
+            </div>
+            <div class="website_title">
+                <h1>Fluent Design System</h1>
+            </div>
+            <div class="nav-links">
+                <ul class="nav-ul">
+                    <li class="nav-li">
+                        <a href="">Web</a>
+                    </li>
+                    <li class="nav-li">
+                        <a href="">Windows</a>
+                    </li>
+                    <li class="nav-li">
+                        <a href="">iOS</a>
+                    </li>
+                    <li class="nav-li">
+                        <a href="">Android</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mobile_nav_toggle">
+                <span class="top-bar"></span>
+                <span class="middle-bar"></span>
+                <span class="bottom-bar"></span>
+            </div>
+            <div class="mobile_nav">
+                <ul>
+                    <li>
+                        <a href="">Web</a>
+                    </li>
+                    <li>
+                        <a href="">Windows</a>
+                    </li>
+                    <li>
+                        <a href="">iOS</a>
+                    </li>
+                    <li>
+                        <a href="">Android</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="main">
+        <!-- page1_fluent_design -->
+        <div class="page1_main">
+            <div class="page1_content">
+                <div class="page1_content_L_side">
+                    <div class="L_side_title">
+                        <h2 class="title_h2">Fluent Design System</h2>
+                    </div>
+                    <div class="L_side_text_box">
+                        <div class="L_side_text">
+                            <p>Fluent brings the fundamentals of principled design, innovation in technology, and
+                                customer needs together as one. It’s a collective approach to creating simplicity and
+                                coherence through a shared, open design system across platforms.</p>
+                            <p>Open ecosystem, open design system.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="page1_content_R_side">
+                    <img class="img_line_01"
+                        src="https://www.microsoft.com/design/fluent/assets/images/line-white-01.svg" alt="">
+                    <img class="img_line_02"
+                        src="https://www.microsoft.com/design/fluent/assets/images/line-white-02.svg" alt="">
+
+                    <img src="./img/icon-fluent@1x.png" class="img_fluent">
+                </div>
+            </div>
+        </div>
+        <!-- page2_四格 -->
+        <section class="info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <a class="a_1" href="">
+                            <div class="icon">
+                                <img src="./img/icon-globe.svg" alt="">
+                            </div>
+                            <div class="row_text">
+                                <h2>Web</h2>
+                                <p>Create your own web apps and add-ins.</p>
+                            </div>
+                            <div class="row_action">
+                                <img src="assets/images/arrow-black.svg" aria-hidden="true"
+                                    alt="Design for Web"><span>Get started</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <a class="a_1" href="">
+                            <div class="icon">
+                                <img src="./img/icon-windows.svg" alt="">
+                            </div>
+                            <div>
+                                <div class="row_text">
+                                    <h2>Web</h2>
+                                    <p>Create your own web apps and add-ins.</p>
+                                </div>
+                            </div>
+                            <div class="row_action">
+                                <img src="assets/images/arrow-black.svg" aria-hidden="true"                                    alt="Design for Web"><span>Get started</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <a class="a_1" href="">
+                            <div class="icon">
+                                <img src="./img/icon-ios.svg" alt="">
+                            </div>
+                            <div>
+                                <div class="row_text">
+                                    <h2>Web</h2>
+                                    <p>Create your own web apps and add-ins.</p>
+                                </div>
+                            </div>
+                            <div class="row_action">
+                                <img src="assets/images/arrow-black.svg" aria-hidden="true"
+                                    alt="Design for Web"><span>Get started</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <a class="a_1" href="">
+                            <div class="icon">
+                                <img src="./img/icon-android.svg" alt="">
+                            </div>
+                            <div>
+                                <div class="row_text">
+                                    <h2>Web</h2>
+                                    <p>Create your own web apps and add-ins.</p>
+                                </div>
+                            </div>
+                            <div class="row_action">
+                                <img src="assets/images/arrow-black.svg" aria-hidden="true"
+                                    alt="Design for Web"><span>Get started</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- page3_Natural on -->
+        <div class="Natural_on_main_box">
+            <div class="Natural_on_top_box">
+                <div class="Natural_on_top_title">
+                    <h2 class="Natural_on_top_heading">網站維修<br>請勿下滑</h2>
+                </div>
+                <div class="Natural_on_top_content_box">
+                    <div class="Natural_on_top_content">
+                        <p>某一天會完成.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+        </script>
+
+</body>
+
+</html>
